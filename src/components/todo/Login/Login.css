@@ -1,0 +1,35 @@
+button {
+    background-color: green;
+    color: white;
+    width: 100px;
+    height: 40px;
+    margin: 10px;
+    padding: 10px;
+    text-align: center;
+    border: 2px solid white;
+    border-radius: 5px;
+    
+}
+
+button:active, button:hover{
+    background-color: black;
+}
+
+/* 
+.Login {
+    text-align: center;
+    align-items: center;
+    
+} */
+
+.Login input{
+    margin: 10px;
+}
+
+.LoginPage{
+    max-width: 300px;
+    border: 1px solid;
+    margin: auto;
+    margin-top: 200px;
+    box-shadow: 5px 5px 5px ;
+}
