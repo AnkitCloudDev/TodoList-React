@@ -28,8 +28,25 @@ button:active, button:hover{
 
 .LoginPage{
     max-width: 300px;
-    border: 1px solid;
+    border: 2px solid black;
     margin: auto;
     margin-top: 200px;
-    box-shadow: 2px 3px 2px ;
+    box-sizing: border-box;
+    box-shadow: 5px 5px #aaa  ;
+}
+
+.bg {
+    background-color: #aaa;
+    background: #aaa;
+  
+}
+
+@media (min-width: 600px ) {
+    .LoginPage{
+        min-width: 400px;
+        border: 2px solid black;
+    
+    }
+    
+    
 }

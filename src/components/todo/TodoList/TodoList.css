@@ -1,0 +1,15 @@
+div {
+    align-items: center;
+}
+
+table {
+    margin: 50px 20px;
+    padding: 10px;
+    border: 1px solid black;
+    
+}
+
+table tr{
+    border: 1px solid black;
+    
+}
