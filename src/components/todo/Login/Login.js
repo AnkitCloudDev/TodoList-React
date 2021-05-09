@@ -1,5 +1,6 @@
 import React,{ Component } from 'react';
 import './Login.css';
+import AuthenticationService from '../AuthenticationService/AuthenticationService';
 class Login extends Component{
 
     state = {
@@ -20,6 +21,7 @@ class Login extends Component{
             console.log("Logged In");
             this.setState({isAuthenticated: true});
             this.setState({loginFailed: false});
+            AuthenticationService.registerSuccessfulLogin(this.state.username,this.state.password);
             this.props.history.push('/welcome/'+this.state.username);
         } 
         else {
