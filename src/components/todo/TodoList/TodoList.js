@@ -29,7 +29,7 @@ class TodoList extends Component{
         let todoList= this.state.todos.map( i =>{
             console.log(i);
             return <tr key={i.id}>
-                <td>{i.id}</td>
+             
                 <td>{i.description}</td>
                 <td>{i.targetDate.toUTCString()}</td>
                 <td>{i.isDone ? 'Yes': 'No'}</td>
@@ -37,9 +37,10 @@ class TodoList extends Component{
         } )
         return <div>
             <h1>List Todos</h1>
-            <table>
+            <div className="container">         
+            <table className="table">
                 <thead>
-                   <th>id</th>
+                
                    <th>description</th>
                    <th>Target Date</th>
                    <th>Finished?</th>
@@ -48,6 +49,7 @@ class TodoList extends Component{
                  {todoList}
                 </tbody>
             </table>
+            </div>
         </div>;
     }
 }

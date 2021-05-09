@@ -31,12 +31,12 @@ class Login extends Component{
         let text = null;
         if(this.state.isAuthenticated)
         {
-            text = <p>Login Successful!</p>
+            text = <p className="alert alert-success">Login Successful!</p>
         }
 
         if(this.state.loginFailed)
         {
-            text = <p>Invalid Credentials!!</p>
+            text = <p className="alert alert-warning">Invalid Credentials!!</p>
         }
         
         return(
