@@ -4,6 +4,8 @@ import Welcome from './Welcome/Welcome';
 import {Route, Switch} from 'react-router-dom';
 import TodoList from './TodoList/TodoList';
 import './TodoApp.css';
+import HeaderComponent from './UI/Header/HeaderComponent';
+import FooterComponent from './UI/Footer/FooterComponent';
 // import { Router,Route, Switch} from 'react-router-dom';
 
 class TodoApp extends Component{
@@ -12,7 +14,7 @@ class TodoApp extends Component{
         return( 
         <div >
             {/* <LoginComponent/> */}
-
+                <HeaderComponent/>
                 <Switch>
                 <Route path="/login" component={Login} /> 
                 <Route path="/welcome/:name" component={Welcome} />
@@ -23,6 +25,7 @@ class TodoApp extends Component{
                 <a href="/">Click Here to goto the home page</a>
                 </div>}/>
                 </Switch>
+                <FooterComponent/>
            
                 
                     

@@ -2,7 +2,7 @@ import logo from './logo.svg';
 import TodoApp from './components/todo/TodoApp';
 import {BrowserRouter} from 'react-router-dom';
 import './App.css';
-
+import './bootstrap.css'
 
 function App() {
   return (
