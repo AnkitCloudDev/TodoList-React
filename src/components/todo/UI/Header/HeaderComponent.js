@@ -1,21 +1,10 @@
 import React, { Component } from 'react'
-import {Link} from 'react-router-dom';
+import {Link,withRouter} from 'react-router-dom';
 import AuthenticationService from '../../AuthenticationService/AuthenticationService';
 class HeaderComponent extends Component{
 
     render(){
         let isAuth = AuthenticationService.isUserLoggedIn();
-        let welcomeLinks = null;
-        // let logout = null;
-        if(isAuth)
-        {
-            welcomeLinks =   <ul className="navbar-nav">
-            <li > <Link to="/welcome/ankit" className="nav-link">Home</Link> </li>
-            <li ><Link to="/todos" className="nav-link">Todos</Link>  </li>
-        </ul>;
-      
-
-        }
         return <div>
             
             <nav className="navbar navbar-expand-md navbar-dark bg-dark">
@@ -35,4 +24,4 @@ class HeaderComponent extends Component{
     }
 }
 
-export default HeaderComponent;
+export default withRouter(HeaderComponent);
