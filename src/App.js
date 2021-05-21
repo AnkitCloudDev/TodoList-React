@@ -1,18 +1,14 @@
-import logo from './logo.svg';
+import React from 'react';
 import TodoApp from './components/todo/TodoApp';
-import {BrowserRouter} from 'react-router-dom';
+
 import './App.css';
 import './bootstrap.css'
 
 function App() {
   return (
     <div className="App">
-   
-      <TodoApp></TodoApp>
   
-    
-     
-    
+      <TodoApp></TodoApp>
      
     </div>
   );
