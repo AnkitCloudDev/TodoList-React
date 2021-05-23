@@ -10,6 +10,13 @@ class AuthenticationService extends Component{
         sessionStorage.removeItem('auth_user');
     }
 
+    getUserName(){
+        const user = sessionStorage.getItem('auth_user');
+        if(user === null)
+        return '';
+        return user;
+    }
+
     isUserLoggedIn(){
         const user = sessionStorage.getItem('auth_user');
         if(user === null)

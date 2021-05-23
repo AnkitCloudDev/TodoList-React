@@ -1,37 +1,45 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
+import TodoDataService from '../../../api/TodoDataService';
 import './TodoList.css'
+import AuthenticationService from '../AuthenticationService/AuthenticationService';
 class TodoList extends Component{
     state = {
         todos:[
-            {
-            id: 1,
-            description: 'Hint',
-            isDone: false,
-            targetDate: new Date()
-        },
-        {
-            id: 2,
-            description: 'The 2nd Todo',
-            isDone: false,
-            targetDate: new Date()
-        },
-        {
-            id: 3,
-            description: 'The 3rd Todo',
-            isDone: false,
-            targetDate: new Date()
-        },
+        //     {
+        //     id: 1,
+        //     description: 'Hint',
+        //     isDone: false,
+        //     targetDate: new Date()
+        // },
+        // {
+        //     id: 2,
+        //     description: 'The 2nd Todo',
+        //     isDone: false,
+        //     targetDate: new Date()
+        // },
+        // {
+        //     id: 3,
+        //     description: 'The 3rd Todo',
+        //     isDone: false,
+        //     targetDate: new Date()
+        // },
     
     ]
        
     }
+    componentDidMount(){
+        TodoDataService.fetchTodoData(AuthenticationService.getUserName()).then(response => 
+            this.setState({todos: response.data})
+        ).catch(error => console.log(error));
+    }
+
     render(){
         let todoList= this.state.todos.map( i =>{
             console.log(i);
             return <tr key={i.id}>
              
                 <td>{i.description}</td>
-                <td>{i.targetDate.toUTCString()}</td>
+                <td>{i.targetDate}</td>
                 <td>{i.isDone ? 'Yes': 'No'}</td>
             </tr>;
         } )
