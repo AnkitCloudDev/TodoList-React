@@ -1,9 +1,9 @@
 import axios from 'axios';
 
 class HelloWorldService {
-    executeHelloWorldService()
+    executeHelloWorldService(name)
     {
-        const baseUrl = 'http://localhost:8080';
+        const baseUrl = `http://localhost:8080/hello-world-bean/${name}`;
         return axios.get(baseUrl);
     }
 }
