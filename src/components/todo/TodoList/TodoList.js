@@ -34,15 +34,16 @@ class TodoList extends Component{
     }
 
     render(){
+        
         let todoList= this.state.todos.map( i =>{
             console.log(i);
             return <tr key={i.id}>
-             
                 <td>{i.description}</td>
                 <td>{i.targetDate}</td>
                 <td>{i.isDone ? 'Yes': 'No'}</td>
             </tr>;
-        } )
+        } );
+
         return <div>
             <h1>List Todos</h1>
             <div className="container">         
