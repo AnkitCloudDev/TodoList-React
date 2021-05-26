@@ -22,9 +22,10 @@ class TodoApp extends Component{
                 <Switch>
                 <Route path="/login" component={Login} /> 
                 <AuthenticatedRoute path="/welcome/:name" component={Welcome} />
+                <AuthenticatedRoute path="/todos/:id" component={TodoComponent}/>
                 <AuthenticatedRoute path="/todos" component={TodoList} />
                 <AuthenticatedRoute path="/logout" component={Logout} />
-                <AuthenticatedRoute path="/todos/:id" component={TodoComponent}/>
+              
                 <AuthenticatedRoute path="/" exact component={Login}/>
                 <AuthenticatedRoute render={() => <div><h>Sorry the path you are trying to access does'nt exists</h>
                 <br></br>

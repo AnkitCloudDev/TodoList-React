@@ -77,6 +77,10 @@ class TodoList extends Component{
         );
     }
 
+    editTodos = (id) => {
+        this.props.history.push(`/todos/${id}`);
+    }
+
     render(){
 
         let todoList= this.state.todos.map( i =>{
@@ -86,7 +90,7 @@ class TodoList extends Component{
                 <td>{i.targetDate}</td>
                 <td>{i.isDone ? 'Yes': 'No'}</td>
                 <td><button className="btn btn-warning" onClick={()=>this.deleteTodoList(i.id)}>DELETE</button></td>
-                <td><button className="btn btn-warning" onClick={()=>this.edit(i.id)}>Edit</button></td>
+                <td><button className="btn btn-warning" onClick={()=>this.editTodos(i.id)}>Edit</button></td>
                 <td><input type="checkbox" className="form-input-check" onClick={() => this.toggleCheckBOx(i.d)} /></td>
             </tr>;
         } );
