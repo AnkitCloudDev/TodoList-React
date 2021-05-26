@@ -63,6 +63,20 @@ class TodoList extends Component{
         ).catch(error => console.log(error));
     }
 
+    toggleCheckBOx = (id) =>{
+        this.state.todos.map(
+            todo => {
+                if(todo.id === id)
+                {
+                    const a = !todo.isDone
+                    todo.isDone = a;
+                    return todo;
+                }
+                return null;
+            }
+        );
+    }
+
     render(){
 
         let todoList= this.state.todos.map( i =>{
@@ -72,6 +86,8 @@ class TodoList extends Component{
                 <td>{i.targetDate}</td>
                 <td>{i.isDone ? 'Yes': 'No'}</td>
                 <td><button className="btn btn-warning" onClick={()=>this.deleteTodoList(i.id)}>DELETE</button></td>
+                <td><button className="btn btn-warning" onClick={()=>this.edit(i.id)}>Edit</button></td>
+                <td><input type="checkbox" className="form-input-check" onClick={() => this.toggleCheckBOx(i.d)} /></td>
             </tr>;
         } );
 
@@ -87,7 +103,9 @@ class TodoList extends Component{
                    <th>description</th>
                    <th>Target Date</th>
                    <th>Finished?</th>
-                   <th>Delete</th>
+                   <th></th>
+                   <th></th>
+                   <th>Done?</th>
                 </thead>
                 <tbody>
                  {todoList}

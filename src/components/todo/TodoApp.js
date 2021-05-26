@@ -8,6 +8,7 @@ import HeaderComponent from './UI/Header/HeaderComponent';
 import FooterComponent from './UI/Footer/FooterComponent';
 import Logout from './Logout/Logout';
 import AuthenticatedRoute from './AuthenticationService/AuthenticatedRoute/AuthenticatedRoute';
+import TodoComponent from './TodoList/TodoComponent/TodoComponent';
 
 // import { Router,Route, Switch} from 'react-router-dom';
 
@@ -23,6 +24,7 @@ class TodoApp extends Component{
                 <AuthenticatedRoute path="/welcome/:name" component={Welcome} />
                 <AuthenticatedRoute path="/todos" component={TodoList} />
                 <AuthenticatedRoute path="/logout" component={Logout} />
+                <AuthenticatedRoute path="/todos/:id" component={TodoComponent}/>
                 <AuthenticatedRoute path="/" exact component={Login}/>
                 <AuthenticatedRoute render={() => <div><h>Sorry the path you are trying to access does'nt exists</h>
                 <br></br>
