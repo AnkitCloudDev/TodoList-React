@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import moment from 'moment';
 import {ErrorMessage, Field, Form, Formik} from 'formik';
+import TodoDataService from '../../../../api/TodoDataService';
+import AuthenticationService from '../../AuthenticationService/AuthenticationService';
 class TodoComponent extends Component{
     state = {
         id: this.props.match.params.id,
@@ -11,6 +13,16 @@ class TodoComponent extends Component{
 
     onSubmit(values){
         console.log(values);
+    }
+
+    componentDidMount(){
+        let username = AuthenticationService.username;
+        TodoDataService.retrieveSingleTodo(username,this.state.id).then(
+            resposne => this.setState({
+                description: resposne.data.description,
+                targetDate: moment(resposne.data.targetDate).format('YYYY-MM-DD')
+            })
+        );
     }
 
     validate(values){

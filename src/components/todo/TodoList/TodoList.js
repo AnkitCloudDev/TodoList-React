@@ -29,8 +29,10 @@ class TodoList extends Component{
        
     }
     componentDidMount(){
+
             console.log("CDM CALL");
             this.refreshTodos();
+            
     }
     deleteTodoList = (id)=>{
         let username = AuthenticationService.getUserName();
@@ -58,12 +60,15 @@ class TodoList extends Component{
     }
 
     refreshTodos(){
+
         TodoDataService.fetchTodoData(AuthenticationService.getUserName()).then(response => 
             this.setState({todos: response.data})
         ).catch(error => console.log(error));
+
     }
 
     toggleCheckBOx = (id) =>{
+
         this.state.todos.map(
             todo => {
                 if(todo.id === id)
@@ -89,7 +94,7 @@ class TodoList extends Component{
                 <td>{i.description}</td>
                 <td>{i.targetDate}</td>
                 <td>{i.isDone ? 'Yes': 'No'}</td>
-                <td><button className="btn btn-warning" onClick={()=>this.deleteTodoList(i.id)}>DELETE</button></td>
+                <td><button className="btn btn-danger" onClick={()=>this.deleteTodoList(i.id)}>DELETE</button></td>
                 <td><button className="btn btn-warning" onClick={()=>this.editTodos(i.id)}>Edit</button></td>
                 <td><input type="checkbox" className="form-input-check" onClick={() => this.toggleCheckBOx(i.d)} /></td>
             </tr>;
