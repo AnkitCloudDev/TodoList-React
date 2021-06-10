@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import TodoDataService from '../../../api/TodoDataService';
 import './TodoList.css'
 import AuthenticationService from '../AuthenticationService/AuthenticationService';
+import moment from 'moment';
 class TodoList extends Component{
     state = {
         todos:[
@@ -92,10 +93,10 @@ class TodoList extends Component{
             console.log(i);
             return <tr key={i.id}>
                 <td>{i.description}</td>
-                <td>{i.targetDate}</td>
+                <td>{moment(i.targetDate).format('YYYY-MM-DD')}</td>
                 <td>{i.isDone ? 'Yes': 'No'}</td>
                 <td><button className="btn btn-danger" onClick={()=>this.deleteTodoList(i.id)}>DELETE</button></td>
-                <td><button className="btn btn-warning" onClick={()=>this.editTodos(i.id)}>Edit</button></td>
+                <td><button className="btn btn-warning" onClick={()=>this.editTodos(i.id)} {...this.props}>Edit</button></td>
                 <td><input type="checkbox" className="form-input-check" onClick={() => this.toggleCheckBOx(i.d)} /></td>
             </tr>;
         } );

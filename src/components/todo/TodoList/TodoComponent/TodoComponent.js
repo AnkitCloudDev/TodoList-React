@@ -13,6 +13,16 @@ class TodoComponent extends Component{
 
     onSubmit(values){
         console.log(values);
+        console.log("Inside On Submit");
+        console.log('This Props:');
+        console.log(this.props)
+        let username = AuthenticationService.username;
+        TodoDataService.updateTodo( username, this.state.id ,{
+            id: this.state.id,
+            description: values.description,
+            targetDate: values.targetDate
+        }).then( () =>  this.props.history.push('/todos') )
+    
     }
 
     componentDidMount(){
@@ -74,7 +84,7 @@ class TodoComponent extends Component{
                                 <label>Target Date</label>
                                 <Field className = "form-control" type="date" name="targetDate"></Field>
                             </fieldset>
-                            <button className="btn btn-success" type="submit">Save</button>
+                            <button className="btn btn-success" type="submit" onSubmit={(values)=>this.onSubmit(values)}>Save</button>
 
                         </Form>
                     )
