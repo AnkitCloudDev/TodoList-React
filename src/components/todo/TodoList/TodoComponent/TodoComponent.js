@@ -12,20 +12,34 @@ class TodoComponent extends Component{
     }
 
     onSubmit(values){
+        let username = AuthenticationService.username;
+        let todo = {
+            id: this.state.id,
+            description: values.description,
+            targetDate: values.targetDate
+        }
+        if(this.state.id === -1 )
+        {
+            TodoDataService.createTodo(username,todo).then( () =>  this.props.history.push('/'))
+        
+        }
+        else    
+        {        
         console.log(values);
         console.log("Inside On Submit");
         console.log('This Props:');
         console.log(this.props)
-        let username = AuthenticationService.username;
-        TodoDataService.updateTodo( username, this.state.id ,{
-            id: this.state.id,
-            description: values.description,
-            targetDate: values.targetDate
-        }).then( () =>  this.props.history.push('/todos') )
+        
+        TodoDataService.updateTodo( username, this.state.id ,todo).then( () =>  this.props.history.push('/todos') )}
     
     }
 
     componentDidMount(){
+        if(this.state.id === -1)
+        {
+            return;
+        }
+
         let username = AuthenticationService.username;
         TodoDataService.retrieveSingleTodo(username,this.state.id).then(
             resposne => this.setState({
@@ -62,7 +76,7 @@ class TodoComponent extends Component{
 
         return <div>
             
-            <h1>The Id of this Todo task is {this.props.match.params.id}</h1>
+            <h1>Todo</h1>
             <div className="container">
                 <Formik initialValues={{
                     description,

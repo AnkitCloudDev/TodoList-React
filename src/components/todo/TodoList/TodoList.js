@@ -83,6 +83,10 @@ class TodoList extends Component{
         );
     }
 
+    addTodo = () => {
+        this.props.history.push(`/todos/-1`)
+    }
+
     editTodos = (id) => {
         this.props.history.push(`/todos/${id}`);
     }
@@ -121,6 +125,9 @@ class TodoList extends Component{
                  {todoList}
                 </tbody>
             </table>
+            <div className="row">
+                <button className="btn btn-success" onClick={this.addTodo}>Add</button>
+            </div>
             </div>
         </div>;
     }
