@@ -25,6 +25,7 @@ class TodoDataService {
 
     createTodo(name,todo)
     {
+        console.log(`http://localhost:8080/users/${name}/todos`);
         return axios.post(`http://localhost:8080/users/${name}/todos`,todo);
     }
 

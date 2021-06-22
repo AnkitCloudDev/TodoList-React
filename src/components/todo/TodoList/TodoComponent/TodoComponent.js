@@ -11,17 +11,21 @@ class TodoComponent extends Component{
 
     }
 
-    onSubmit(values){
-        let username = AuthenticationService.username;
+    onSubmit=(values)=>{
+        console.log("On submit called");
+        console.log(values);
+        let username = AuthenticationService.getUserName();
         let todo = {
             id: this.state.id,
             description: values.description,
             targetDate: values.targetDate
         }
+        console.log("Username in onsubmit is"+username);
+       
+
         if(this.state.id === -1 )
         {
             TodoDataService.createTodo(username,todo).then( () =>  this.props.history.push('/'))
-        
         }
         else    
         {        
@@ -35,12 +39,13 @@ class TodoComponent extends Component{
     }
 
     componentDidMount(){
+        console.log(this.props.match);
         if(this.state.id === -1)
         {
             return;
         }
 
-        let username = AuthenticationService.username;
+        let username = AuthenticationService.getUserName();
         TodoDataService.retrieveSingleTodo(username,this.state.id).then(
             resposne => this.setState({
                 description: resposne.data.description,
@@ -50,7 +55,7 @@ class TodoComponent extends Component{
     }
 
     validate(values){
-        console.log(values);
+
         let errors = {};
         if(!values.description)
         {
@@ -98,7 +103,7 @@ class TodoComponent extends Component{
                                 <label>Target Date</label>
                                 <Field className = "form-control" type="date" name="targetDate"></Field>
                             </fieldset>
-                            <button className="btn btn-success" type="submit" onSubmit={(values)=>this.onSubmit(values)}>Save</button>
+                            <button className="btn btn-success" type="submit" onSubmit = {(values)=>this.onSubmit(values)}>Save</button>
 
                         </Form>
                     )

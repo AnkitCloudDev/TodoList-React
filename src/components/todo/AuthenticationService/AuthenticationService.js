@@ -12,8 +12,11 @@ class AuthenticationService extends Component{
 
     getUserName(){
         const user = sessionStorage.getItem('auth_user');
+        console.log("Username="+user);
         if(user === null)
-        return '';
+        {
+            return '';
+        }
         return user;
     }
 
