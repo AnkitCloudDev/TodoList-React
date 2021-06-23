@@ -4,6 +4,7 @@ import {ErrorMessage, Field, Form, Formik} from 'formik';
 import TodoDataService from '../../../../api/TodoDataService';
 import AuthenticationService from '../../AuthenticationService/AuthenticationService';
 class TodoComponent extends Component{
+
     state = {
         id: this.props.match.params.id,
         description: 'Learn Angular',
@@ -33,9 +34,7 @@ class TodoComponent extends Component{
         console.log("Inside On Submit");
         console.log('This Props:');
         console.log(this.props)
-        
         TodoDataService.updateTodo( username, this.state.id ,todo).then( () =>  this.props.history.push('/todos') )}
-    
     }
 
     componentDidMount(){
