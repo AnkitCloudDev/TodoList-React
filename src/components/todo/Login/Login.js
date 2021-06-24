@@ -6,7 +6,7 @@ class Login extends Component{
     state = {
         username: '',
         password: '',
-        isAuthenticated: false,
+        isAuthenticated: AuthenticationService.isUserLoggedIn(),
         loginFailed: false,
     };
 
@@ -16,17 +16,28 @@ class Login extends Component{
     }
 
     loginHandler = () =>{
-        if(this.state.username === 'ankit' && this.state.password === 'password')
-        {
-            console.log("Logged In");
-            this.setState({isAuthenticated: true});
-            this.setState({loginFailed: false});
-            AuthenticationService.registerSuccessfulLogin(this.state.username,this.state.password);
-            this.props.history.push('/welcome/'+this.state.username);
-        } 
-        else {
-            this.setState({loginFailed: true});
-        }
+        // if(this.state.username === 'ankit' && this.state.password === 'password')
+        // {
+        //     // this.setState({isAuthenticated: true});
+        //     // this.setState({loginFailed: false});
+        //     AuthenticationService.registerSuccessfulLogin(this.state.username,this.state.password);
+        //     this.props.history.push('/welcome/'+this.state.username);
+        // } 
+        // else {
+        //     this.setState({loginFailed: true});
+        // }
+
+        AuthenticationService.executeBasicAuthenticationService(this.state.username,this.state.password).then(
+            () => {
+                AuthenticationService.registerSuccessfulLogin(this.state.username,this.state.password);
+                this.props.history.push(`/welcome/${this.state.username}`);
+
+            }
+        ).catch(
+            () => {
+                this.setState({loginFailed: true})
+            }
+        )
     }
   
     render(){

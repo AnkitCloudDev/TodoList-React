@@ -2,10 +2,23 @@ import  { Component } from 'react'
 import axios from 'axios';
 class AuthenticationService extends Component{
     registerSuccessfulLogin(username,password){
-        let basicAuthHeader = 'Basic ' + window.btoa(`${username}:${password}`)
+        let basicAuthHeader = this.createBasicAuthToken(username,password);
         console.log("Logged in Successfully");
         sessionStorage.setItem('auth_user',username);
         this.setupAxiosInterceptor(basicAuthHeader);
+    }
+    
+    createBasicAuthToken(username,password)
+    {
+        return 'Basic ' + window.btoa(`${username}:${password}`);
+    }
+    
+    executeBasicAuthenticationService(username,password)
+    {
+        let basicAuthHeader = this.createBasicAuthToken(username,password)
+        return axios.get('http://localhost:8080/basicauth',{headers: {
+            authorization: basicAuthHeader
+        }});
     }
 
     logout(){
