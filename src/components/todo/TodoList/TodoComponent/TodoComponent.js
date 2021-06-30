@@ -26,7 +26,7 @@ class TodoComponent extends Component{
 
         if(this.state.id === -1 )
         {
-            TodoDataService.createTodo(username,todo).then( () =>  this.props.history.push('/'))
+            TodoDataService.createTodo(username,todo).then( () =>  this.props.history.push('/'));
         }
         else    
         {        

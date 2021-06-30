@@ -1,32 +1,34 @@
 import axios from 'axios';
-
+import {BASE_URL} from '../Constants';
 class TodoDataService {
     fetchTodoData(name)
     {
-        const baseUrl = `http://localhost:8080/users/${name}/todos`;
-        return axios.get(baseUrl);
+        
+        const getTodo = `${BASE_URL}/users/${name}/todos`;
+        console.log(getTodo)
+        return axios.get(getTodo);
     }
 
     deleteTodo(name,id)
     {
-        return axios.delete(`http://localhost:8080/users/${name}/todos/${id}`);
+        return axios.delete(`${BASE_URL}/users/${name}/todos/${id}`);
        
     }
 
     retrieveSingleTodo(name,id)
     { 
-        return axios.get(`http://localhost:8080/users/${name}/todos/${id}`);
+        return axios.get(`${BASE_URL}/users/${name}/todos/${id}`);
     }
 
     updateTodo(name,id,todo)
     {
-        return axios.put(`http://localhost:8080/users/${name}/todos/${id}`,todo);
+        return axios.put(`${BASE_URL}/users/${name}/todos/${id}`,todo);
     }
 
     createTodo(name,todo)
     {
-        console.log(`http://localhost:8080/users/${name}/todos`);
-        return axios.post(`http://localhost:8080/users/${name}/todos`,todo);
+        console.log(`${BASE_URL}/users/${name}/todos`);
+        return axios.post(`${BASE_URL}/users/${name}/todos`,todo);
     }
 
 
