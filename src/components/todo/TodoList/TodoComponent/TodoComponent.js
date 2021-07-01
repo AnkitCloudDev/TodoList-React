@@ -7,7 +7,7 @@ class TodoComponent extends Component{
 
     state = {
         id: this.props.match.params.id,
-        description: 'Learn Angular',
+        description: ' ',
         targetDate: moment(new Date()).format('YYYY-MM-DD'),
 
     }
@@ -37,19 +37,33 @@ class TodoComponent extends Component{
         TodoDataService.updateTodo( username, this.state.id ,todo).then( () =>  this.props.history.push('/todos') )}
     }
 
+    updateState(description,targetDate)
+    {
+        this.setState({
+            description: description,
+            targetDate: targetDate
+        })
+    }
+
     componentDidMount(){
         console.log(this.props.match);
+
         if(this.state.id === -1)
         {
             return;
         }
 
         let username = AuthenticationService.getUserName();
-        TodoDataService.retrieveSingleTodo(username,this.state.id).then(
-            resposne => this.setState({
-                description: resposne.data.description,
-                targetDate: moment(resposne.data.targetDate).format('YYYY-MM-DD')
-            })
+
+         TodoDataService.retrieveSingleTodo(username,this.state.id).then(
+            response => {
+              console.log(response.data.description);
+              this.updateState(response.data.description, moment(response.data.targetDate).format('YYYY-MM-DD'))
+                this.setState({
+                description: response.data.description,
+                targetDate: moment(response.data.targetDate).format('YYYY-MM-DD')
+            },()=>console.log("Finished"))
+        }
         );
     }
 

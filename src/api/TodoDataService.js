@@ -15,7 +15,7 @@ class TodoDataService {
        
     }
 
-    retrieveSingleTodo(name,id)
+     retrieveSingleTodo(name,id)
     { 
         return axios.get(`${BASE_URL}/users/${name}/todos/${id}`);
     }

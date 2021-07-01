@@ -4,30 +4,13 @@ import {BASE_URL} from '../../../Constants';
 export const USER_NAME_SESSION_ATTRIBUTE_NAME = 'auth_user';
 export const JWT_TOKEN = ""
 class AuthenticationService extends Component{
-    registerSuccessfulLogin(username,password){
-        let basicAuthHeader = this.createBasicAuthToken(username,password);
-        console.log("Logged in Successfully");
-        sessionStorage.setItem('auth_user',username);
-        this.setupAxiosInterceptor(basicAuthHeader);
-    }
-    
-    createBasicAuthToken(username,password)
-    {
-        return 'Basic ' + window.btoa(`${username}:${password}`);
-    }
+
 
     createJwtToken(token)
     {
         return 'Bearer ' + token;
     }
-    
-    // executeBasicAuthenticationService(username,password)
-    // {
-    //     let basicAuthHeader = this.createBasicAuthToken(username,password)
-    //     return axios.get('http://localhost:8080/basicauth',{headers: {
-    //         authorization: basicAuthHeader
-    //     }});
-    // }
+
 
     executeJWTAuthenticationService(username,password)
     {
@@ -67,13 +50,14 @@ class AuthenticationService extends Component{
 
     setupAxiosInterceptor(token)
     {  
+        console.log(token);
         axios.interceptors.request.use(
             (config) => {
                 if(this.isUserLoggedIn())
                 {
                     config.headers.authorization = token
                 }
-                return config
+                return config;
             }
         )
 
